@@ -383,9 +383,10 @@ def write_justification(results, metric: str, sel_size: int, method: str, ratio:
     if base is not None and base["auprc"] >= cand["auprc"].max():
         lines.append(f"- **AUPRC en yüksek dengeleme yokken** ({base['auprc']:.3f}). Yani dengeleme modelin "
                      "fraud'ları normallerden ayırma (sıralama) yeteneğini artırmıyor; sadece 0.5 eşiğinin "
-                     "nereye düştüğünü değiştiriyor. Baseline'ın recall'unun sıfıra yakın olması bilgisizlikten "
-                     "değil, eşiğin dengesiz veri için fazla yüksek kalmasından. Dengelemenin pratik faydası, "
-                     "eşik ayarı yapmadan da kullanılabilir bir precision/recall dengesi vermesi.")
+                     "nereye düştüğünü değiştiriyor. Baseline'ın recall'unun düşük (%"
+                     f"{base['recall'] * 100:.1f}) olması bilgisizlikten değil, eşiğin dengesiz veri için fazla "
+                     "yüksek kalmasından. Dengelemenin pratik faydası, eşik ayarı yapmadan da kullanılabilir bir "
+                     "precision/recall dengesi vermesi.")
     if base is not None:
         lines.append(f"- **Maliyet:** seçilen yöntemin train seti baseline'ın {sel['train_rows'] / base['train_rows']:.2f} "
                      f"katı, eğitim süresi {sel['train_sec'] / max(base['train_sec'], 1e-9):.2f} katı.")
@@ -451,8 +452,10 @@ def make_plots(res, out: Path):
                    color=colors[s], edgecolor=C.SURFACE, linewidth=1.5, label=C.size_label(s))
         ax.set_xticks(x, order, fontsize=8.5)
         ax.set_ylim(0, 1.05)
-    axes[0, 0].legend(title="Veri boyutu", frameon=False, fontsize=9, title_fontsize=9,
-                      labelcolor=C.INK2, loc="upper left")
+    # Lejant başlık satırında, sağda: çubukların üstüne binmesin
+    handles, labels = axes[0, 0].get_legend_handles_labels()
+    fig.legend(handles, labels, title="Veri boyutu", frameon=False, fontsize=9, title_fontsize=9,
+               labelcolor=C.INK2, loc="upper right", ncol=len(sizes), bbox_to_anchor=(0.995, 1.0))
     fig.suptitle("Dengeleme yöntemine ve veri boyutuna göre test metrikleri "
                  "(test seti gerçek dağılımda, eşik 0.5)", x=0.01, ha="left", color=C.INK, fontsize=13)
     C.save_fig(fig, out / "metrics_by_method.png")
@@ -487,8 +490,9 @@ def make_plots(res, out: Path):
                 ax.text(b.get_x() + b.get_width() / 2, v + 0.015, f"{v:.3f}", ha="center",
                         va="bottom", fontsize=9, color=C.INK)
         ax.set_xticks(xb, [C.size_label(s) for s in base["size"]])
-        ax.set_ylim(0, 1.12)
-        ax.legend(frameon=False, fontsize=9, labelcolor=C.INK2, loc="upper right")
+        ax.set_ylim(0, 1.3)  # üstte lejant için boşluk: değer etiketleriyle çakışmasın
+        ax.set_yticks(np.arange(0, 1.01, 0.2))
+        ax.legend(frameon=False, fontsize=9, labelcolor=C.INK2, loc="upper center", ncol=2)
         C.save_fig(fig, out / "baseline_accuracy_vs_recall.png")
 
     # 4) Veri büyüse de fraud ORANI değişmiyor, sadece fraud SAYISI artıyor
