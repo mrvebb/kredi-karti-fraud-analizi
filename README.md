@@ -37,11 +37,12 @@ Akış sırayla: **Öğrenci 1 → 3 → 2 → 4 → 5**. Her adım bir öncekin
 (dosya adları ve sütunlar için aşağıdaki **Arayüz** bölümüne bakın).
 
 ```powershell
-# Öğrenci 1 + Öğrenci 2 sırayla (100K, 1M, 5M) - kaldığı yerden devam eder
+# Öğrenci 1 -> 3 -> 2 sırayla (100K, 1M, 5M) - kaldığı yerden devam eder
 .\run_all.ps1
 
 # Ya da tek tek
 .\.venv\Scripts\python.exe src\ogrenci1_veri_hazirlama.py       # -> data/scaled/
+.\.venv\Scripts\python.exe src\ogrenci3_ozellik_uretimi.py     # -> data/features/
 .\.venv\Scripts\python.exe src\ogrenci2_class_imbalance.py      # -> data/balanced/
 ```
 
@@ -101,11 +102,11 @@ data/            fraudTrain.csv, fraudTest.csv (Kaggle)
   balanced/      Öğrenci 2: dengelenmiş train + gerçek dağılımlı test, SECILEN_YONTEM.json
 src/
   common.py                    ortak: Spark, okuma, ölçekleme, train/test ayrımı, log, grafik stili
-  ogrenci1_veri_hazirlama.py   ogrenci2_class_imbalance.py
+  ogrenci1_veri_hazirlama.py   ogrenci3_ozellik_uretimi.py   ogrenci2_class_imbalance.py
 notebooks/       keşif notebook'ları (Colab)
 results/ogrenciN/  her öğrencinin CSV + PNG çıktıları ve run.log
 docs/            rapor, mimari şema, sınav soruları
-run_all.ps1      Öğrenci 1 + 2 akışı
+run_all.ps1      Öğrenci 1 -> 3 -> 2 akışı
 ```
 
 ## Katkı tablosu
@@ -114,7 +115,7 @@ run_all.ps1      Öğrenci 1 + 2 akışı
 |---|---|---|---|
 | Öğrenci 1 | Veri hazırlama, dağılım incelemesi, 100K/1M/5M ölçekleme, CSV vs Parquet karşılaştırması | `src/ogrenci1_veri_hazirlama.py`, `src/common.py` | `data/scaled/`, `results/ogrenci1/` |
 | Öğrenci 2 | Class imbalance analizi, train/test ayrımı, dengeleme (none / class_weight / undersample / oversample × 1:1, 1:10), gerekçeli yöntem seçimi | `src/ogrenci2_class_imbalance.py` | `data/balanced/`, `results/ogrenci2/` (seçim gerekçesi: `secim_gerekcesi.md`) |
-| Öğrenci 3 | Spark window fonksiyonlarıyla müşteri / zaman bazlı davranış özellikleri | | `data/features/`, `results/ogrenci3/` |
+| Öğrenci 3 | Spark window fonksiyonlarıyla müşteri / zaman bazlı davranış özellikleri (sadece geçmişe bakan pencereler, sızıntı testi), süre ölçümü, fraud/normal özellik karşılaştırması | `src/ogrenci3_ozellik_uretimi.py` | `data/features/`, `results/ogrenci3/` |
 | Öğrenci 4 | LR, Random Forest, GBT; precision / recall / F1 / AUPRC, confusion matrix, PR eğrisi, eşik analizi | | `results/ogrenci4/` |
 | Öğrenci 5 | Boyut ve dengesizliğin eğitim süresi, bellek, throughput ve performansa etkisi | | `results/ogrenci5/` |
 | Hep birlikte | Mimari şema, teknik rapor, README, sınav soruları | `docs/` | |

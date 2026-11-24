@@ -1,4 +1,4 @@
-﻿# Öğrenci 1 -> Öğrenci 2 akışını sırayla çalıştırır.
+﻿# Öğrenci 1 -> Öğrenci 3 -> Öğrenci 2 akışını sırayla çalıştırır.
 # Her script kesintiye dayanıklı: tekrar çalıştırınca bitmiş adımları atlar, kaldığı yerden devam eder.
 #
 # VS Code'dan BAĞIMSIZ (pencere kapansa da devam eder) başlatmak için, herhangi bir PowerShell'de:
@@ -8,7 +8,7 @@
 #
 # Parametreler:  .\run_all.ps1 -Steps 2 -Sizes 5000000 -DriverMemory 8g
 param(
-    [int[]]$Steps = @(1, 2),
+    [int[]]$Steps = @(1, 3, 2),
     [int[]]$Sizes = @(100000, 1000000, 5000000),
     [string]$DriverMemory = "8g"
 )
@@ -34,6 +34,7 @@ function Write-Log([string]$msg) {
 $sizeArgs = $Sizes | ForEach-Object { "$_" }
 $commands = @{
     1 = @("src\ogrenci1_veri_hazirlama.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
+    3 = @("src\ogrenci3_ozellik_uretimi.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
     2 = @("src\ogrenci2_class_imbalance.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
 }
 

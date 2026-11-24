@@ -1,0 +1,4 @@
+size,input_rows,output_rows,rows_equal,orig_id_kept,missing_input_cols,missing_model_features,not_double,null_or_nan,ok,checked_at
+100000,100000,100000,True,True,,,,,True,2026-11-24T17:14:05
+1000000,1000000,1000000,True,True,,,,,True,2026-11-24T17:14:46
+5000000,5000000,5000000,True,True,,,,,True,2026-11-24T17:20:41

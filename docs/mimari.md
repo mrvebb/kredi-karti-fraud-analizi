@@ -19,8 +19,8 @@ flowchart LR
 
     subgraph O3["Öğrenci 3 - Özellik üretimi"]
         direction TB
-        B1["Window: partitionBy(cc_num)<br/>orderBy(unix_time)"] --> B2["txn_count_24h, card_avg_amt,<br/>amt_dev / ratio, secs_since_prev"]
-        B2 --> B3["hour, is_night, distance_km, age"]
+        B1["Window: partitionBy(cc_num)<br/>orderBy(trans_date_trans_time)<br/>sadece geçmiş: rangeBetween / rowsBetween(-1) / lag"] --> B2["txn_count_24h, card_avg_amt,<br/>amt_dev / ratio, log_secs_since_prev,<br/>log_amt, is_night"]
+        B2 --> B3["add_basic_features:<br/>age, hour, day_of_week,<br/>distance_km, gender_m"]
     end
 
     O3 -->|data/features/*.parquet| O2
