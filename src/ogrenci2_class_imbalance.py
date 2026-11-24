@@ -268,11 +268,18 @@ def run_size(spark, size: int, methods: list[str], ratios: list[int], input_kind
 # --------------------------------------------------------------------------- #
 # g) Seçilen yöntemle dengelenmiş veriyi kaydet (her boyut)
 # --------------------------------------------------------------------------- #
-def choose_method(results, select_metric: str, size: int):
+TIE_TOL = 0.005   # metrik farkı bundan küçükse yöntemler "eşit" sayılır
+
+
+def choose_method(results, select_metric: str, size: int, tol: float = TIE_TOL):
+    """En iyi metrik değerine tol'dan yakın yöntemler eşit sayılır; aralarından en kısa
+    eğitim süreli (en ucuz) olan seçilir. Gürültü düzeyindeki farkla pahalı yöntem seçilmesin."""
     cand = results[(results["size"] == size) & (results["method"] != "none")]
     if cand.empty:
         return None
-    best = cand.sort_values(select_metric, ascending=False).iloc[0]
+    top = cand[select_metric].max()
+    tied = cand[cand[select_metric] >= top - tol]
+    best = tied.sort_values(["train_sec", select_metric], ascending=[True, False]).iloc[0]
     return best["method"], int(best["target_ratio"].split(":")[1]), float(best[select_metric])
 
 
@@ -329,10 +336,14 @@ def write_justification(results, metric: str, sel_size: int, method: str, ratio:
     name = lambda x: f"{x['method']} {x['target_ratio']}"  # noqa: E731
     pct = lambda v: f"%{100 * v:.1f}"  # noqa: E731
 
+    top = cand[metric].max()
+    tied = cand[cand[metric] >= top - TIE_TOL]
     lines = [f"# Öğrenci 2 - Dengeleme yöntemi seçimi ({C.size_label(sel_size)}, girdi: {input_kind})", "",
              f"Seçim ölçütü: **{metric.upper()}** (test seti gerçek dağılımda, eşik 0.5). "
              "F1, precision ile recall'u birlikte dikkate aldığı için hem kaçırılan fraud'u hem de "
-             "yanlış alarmı cezalandırır.", "",
+             f"yanlış alarmı cezalandırır. En iyi değere {TIE_TOL} puandan yakın yöntemler eşit "
+             "sayılır ve aralarından **en kısa sürede eğitilen** seçilir (gürültü düzeyindeki bir fark "
+             "için daha pahalı yöntemi seçmemek için).", "",
              "| Yöntem | Train satırı | Precision | Recall | F1 | AUPRC | Eğitim (sn) |",
              "|---|---:|---:|---:|---:|---:|---:|"]
     for _, x in r.sort_values(metric, ascending=False).iterrows():
@@ -342,16 +353,23 @@ def write_justification(results, metric: str, sel_size: int, method: str, ratio:
     lines += ["", "## Gerekçe", ""]
     if base is not None:
         lines.append(f"- **Dengeleme yokken** accuracy {pct(base['accuracy'])} ama recall yalnızca "
-                     f"{pct(base['recall'])}: test setindeki fraud'ların {pct(1 - base['recall'])}'i kaçırılıyor. "
+                     f"{pct(base['recall'])}: test setindeki fraud'ların kaçırılan payı {pct(1 - base['recall'])}. "
                      "Yüksek accuracy, modelin neredeyse her şeye 'normal' demesinden geliyor.")
         lines.append(f"- **Seçilen yöntem ({method} 1:{ratio})** ile recall {pct(base['recall'])} → "
                      f"{pct(sel['recall'])}, precision {pct(base['precision'])} → {pct(sel['precision'])}, "
                      f"F1 {base['f1']:.3f} → {sel['f1']:.3f}.")
+    if len(tied) > 1:
+        others = ", ".join(f"{name(x)} ({x[metric]:.3f}, {x['train_sec']:.1f} sn, {int(x['train_rows']):,} satır)"
+                           for _, x in tied.iterrows()
+                           if (x["method"], x["target_ratio"]) != (method, f"1:{ratio}"))
+        lines.append(f"- **Eşitlik:** {metric.upper()} açısından {len(tied)} yöntem birbirine {TIE_TOL} puandan "
+                     f"yakın. Seçilen {method} 1:{ratio} ({sel[metric]:.3f}, {sel['train_sec']:.1f} sn, "
+                     f"{int(sel['train_rows']):,} satır) bunların en hızlı eğitileni. Diğerleri: {others}.")
     best_rec = cand.sort_values("recall", ascending=False).iloc[0]
     if (best_rec["method"], best_rec["target_ratio"]) != (method, f"1:{ratio}"):
         lines.append(f"- En yüksek recall **{name(best_rec)}** ile ({pct(best_rec['recall'])}), ama precision "
-                     f"{pct(best_rec['precision'])}: verilen her fraud alarmının yaklaşık "
-                     f"{pct(1 - best_rec['precision'])}'i yanlış. Bu yüzden tek başına recall'a göre seçilmedi.")
+                     f"{pct(best_rec['precision'])}: fraud alarmlarında yanlış alarm payı "
+                     f"{pct(1 - best_rec['precision'])}. Bu yüzden tek başına recall'a göre seçilmedi.")
     lo, hi = cand["auprc"].min(), cand["auprc"].max()
     if base is not None:
         lo, hi = min(lo, base["auprc"]), max(hi, base["auprc"])
@@ -362,6 +380,12 @@ def write_justification(results, metric: str, sel_size: int, method: str, ratio:
     else:
         lines.append(f"- AUPRC yöntemler arasında {lo:.3f}–{hi:.3f} aralığında değişiyor; seçilen yöntemde "
                      f"{sel['auprc']:.3f}.")
+    if base is not None and base["auprc"] >= cand["auprc"].max():
+        lines.append(f"- **AUPRC en yüksek dengeleme yokken** ({base['auprc']:.3f}). Yani dengeleme modelin "
+                     "fraud'ları normallerden ayırma (sıralama) yeteneğini artırmıyor; sadece 0.5 eşiğinin "
+                     "nereye düştüğünü değiştiriyor. Baseline'ın recall'unun sıfıra yakın olması bilgisizlikten "
+                     "değil, eşiğin dengesiz veri için fazla yüksek kalmasından. Dengelemenin pratik faydası, "
+                     "eşik ayarı yapmadan da kullanılabilir bir precision/recall dengesi vermesi.")
     if base is not None:
         lines.append(f"- **Maliyet:** seçilen yöntemin train seti baseline'ın {sel['train_rows'] / base['train_rows']:.2f} "
                      f"katı, eğitim süresi {sel['train_sec'] / max(base['train_sec'], 1e-9):.2f} katı.")
@@ -545,7 +569,7 @@ def main():
             log.info(f"===== {size:,} bitti: {n} deney çalıştırıldı, {t.sec / 60:.1f} dk =====")
 
         results = read_results(res_path, input_kind)
-        make_plots(results, out)
+        C.safe_plot(make_plots, results, out, log=log.warning)
         if not args.no_save and set(args.methods) - {"none"}:
             save_balanced(spark, results, args.select_metric, sizes, input_kind, holder, out, args.force)
         log.info("Öğrenci 2 tamamlandı.")

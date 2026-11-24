@@ -279,15 +279,20 @@ def scale_dataset(df: DataFrame, target_size: int, seed: int = SEED,
     t_fraud = int(round(target_size * fraud_ratio))
     t_normal = target_size - t_fraud
 
+    def margin(k: int, have: int) -> float:
+        # Bernoulli/Poisson örneklemede sayı ~ k ± sqrt(k). 6 sigma fazla örnekle, sonra limit ile
+        # TAM sayıya kes. (Sabit %3 pay, az sayıdaki fraud için yetmiyordu: 521 yerine 513 çıktı.)
+        return (6 * math.sqrt(k) + 10) / have
+
     out = []
     for cls, have, want in ((0, n_normal, t_normal), (1, n_fraud, t_fraud)):
         part = df.filter(F.col(label) == cls)
         if want <= have:
-            frac = min(1.0, want / have * 1.03 + 1e-4)   # biraz fazla örnekle, sonra kes
+            frac = min(1.0, want / have + margin(want, have))
             out.append(part.sample(False, frac, seed + cls).limit(want))
         else:
             extra = want - have
-            frac = extra / have * 1.03 + 1e-4
+            frac = extra / have + margin(extra, have)
             synth = (part.sample(True, frac, seed + 10 + cls).limit(extra)
                      .withColumn("is_synthetic", F.lit(1)))
             out.append(part.unionByName(_add_noise(synth, seed + 20 + cls)))
@@ -471,6 +476,15 @@ SERIES = ["#2a78d6", "#eb6834", "#1baf7a", "#eda100", "#e87ba4", "#008300", "#62
 SURFACE, INK, INK2, GRID = "#fcfcfb", "#0b0b0b", "#52514e", "#e4e3df"
 
 
+def safe_plot(fn, *args, log=print):
+    """Grafik hatası (ör. matplotlib eksik) uzun bir çalıştırmayı durdurmasın;
+    veriler CSV'de olduğundan grafikler sonra --plot_only ile üretilebilir."""
+    try:
+        fn(*args)
+    except Exception as e:   # noqa: BLE001
+        log(f"UYARI: grafik üretilemedi ({type(e).__name__}: {e}). Sonra --plot_only ile üretin.")
+
+
 def plt_setup():
     import matplotlib
     matplotlib.use("Agg")
@@ -504,6 +518,14 @@ def save_fig(fig, path: Path):
 def now_iso() -> str:
     from datetime import datetime
     return datetime.now().isoformat(timespec="seconds")
+
+
+def to_pandas(df: DataFrame):
+    """Küçük (özet) Spark DataFrame -> pandas. DataFrame.toPandas() yerine kullanılır:
+    PySpark 3.5'in toPandas'ı Python 3.12'de kaldırılan distutils'i çağırıyor ve pandas 3 ile
+    test edilmemiş. Sadece birkaç yüz satırlık özet tablolar için."""
+    import pandas as pd
+    return pd.DataFrame([r.asDict() for r in df.collect()], columns=df.columns)
 
 
 def dir_size_bytes(path: Path | str) -> int:

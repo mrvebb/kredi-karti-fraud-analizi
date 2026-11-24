@@ -68,19 +68,19 @@ def eda(spark, raw, out: Path):
              f"{pd_rows[0]['cards']} kart, {pd_rows[0]['merchants']} satıcı")
 
     # Tutar: sınıfa göre özet + log10 histogram
-    q = (raw.groupBy(LABEL).agg(F.count("*").alias("n"), F.avg("amt").alias("mean"),
-                                F.expr("percentile_approx(amt, 0.5)").alias("median"),
-                                F.expr("percentile_approx(amt, 0.95)").alias("p95"),
-                                F.max("amt").alias("max")).toPandas())
+    q = C.to_pandas(raw.groupBy(LABEL).agg(F.count("*").alias("n"), F.avg("amt").alias("mean"),
+                                           F.expr("percentile_approx(amt, 0.5)").alias("median"),
+                                           F.expr("percentile_approx(amt, 0.95)").alias("p95"),
+                                           F.max("amt").alias("max")).orderBy(LABEL))
     q.to_csv(out / "eda_amount_by_class.csv", index=False)
-    (raw.withColumn("bin", F.floor(F.log10(F.greatest("amt", F.lit(0.01))) * 10) / 10)
-        .groupBy("bin", LABEL).count().orderBy("bin").toPandas()
-        .to_csv(out / "eda_amount_hist.csv", index=False))
+    C.to_pandas(raw.withColumn("bin", F.floor(F.log10(F.greatest("amt", F.lit(0.01))) * 10) / 10)
+                   .groupBy("bin", LABEL).count().orderBy("bin")) \
+        .to_csv(out / "eda_amount_hist.csv", index=False)
 
     for col, name in (("category", "eda_category.csv"), ("hour", "eda_hour.csv")):
-        (lg.groupBy(col).agg(F.count("*").alias("n"), F.sum(LABEL).alias("fraud"))
-           .withColumn("fraud_pct", F.round(100 * F.col("fraud") / F.col("n"), 4))
-           .orderBy(col).toPandas().to_csv(out / name, index=False))
+        C.to_pandas(lg.groupBy(col).agg(F.count("*").alias("n"), F.sum(LABEL).alias("fraud"))
+                      .withColumn("fraud_pct", F.round(100 * F.col("fraud") / F.col("n"), 4))
+                      .orderBy(col)).to_csv(out / name, index=False)
     log.info("  EDA tabloları yazıldı")
 
 
@@ -123,6 +123,7 @@ def eda_plots(out: Path):
     ax.set_ylabel("Fraud oranı (%)", color=C.INK2)
     ax2 = ax.twinx()
     ax2.plot(hr["hour"], hr["n"] / 1000, color=C.SERIES[0], lw=2, marker="o", ms=3)
+    ax2.set_ylim(0, hr["n"].max() / 1000 * 1.1)   # 0'dan başlasın: hacim farkı abartılı görünmesin
     ax2.set_ylabel("İşlem sayısı (bin)", color=C.SERIES[0])
     ax2.tick_params(colors=C.INK2, labelsize=9)
     for s in ("top",):
@@ -294,7 +295,7 @@ def main():
             eda(spark, holder["raw"], out)
         else:
             log.info("[b] EDA tabloları mevcut -> atlandı")
-        eda_plots(out)
+        C.safe_plot(eda_plots, out, log=log.warning)
         for size in sorted(args.sizes):
             log.info(f"===== [c] {size:,} =====")
             build_size(spark, size, holder, out, args.force)
@@ -303,7 +304,7 @@ def main():
         for size in sorted(args.sizes):
             log.info(f"===== [d] okuma karşılaştırması {size:,} =====")
             read_bench(spark, size, out, args.read_repeats, args.force)
-        format_plots(out)
+        C.safe_plot(format_plots, out, log=log.warning)
         log.info("Öğrenci 1 tamamlandı.")
     except BaseException as e:
         log.exception(f"Kesildi: {type(e).__name__}: {e}")

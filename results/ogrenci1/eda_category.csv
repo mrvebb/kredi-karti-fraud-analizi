@@ -1,0 +1,15 @@
+category,n,fraud,fraud_pct
+entertainment,134118,292,0.2177
+food_dining,130729,205,0.1568
+gas_transport,188029,772,0.4106
+grocery_net,64878,175,0.2697
+grocery_pos,176191,2228,1.2645
+health_fitness,122553,185,0.151
+home,175460,265,0.151
+kids_pets,161727,304,0.188
+misc_net,90654,1182,1.3039
+misc_pos,114229,322,0.2819
+personal_care,130085,290,0.2229
+shopping_net,139322,2219,1.5927
+shopping_pos,166463,1056,0.6344
+travel,57956,156,0.2692

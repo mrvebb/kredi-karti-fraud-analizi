@@ -10,8 +10,9 @@ Mimari: [docs/mimari.md](docs/mimari.md) · Teknik rapor ve sınav soruları: ha
 ## Veri kaynağı
 
 Kaggle - [Credit Card Transactions Fraud Detection Dataset](https://www.kaggle.com/datasets/kartik2112/fraud-detection)
-(`kartik2112/fraud-detection`). Sparkov ile üretilmiş simülasyon verisi; 2019-2020, ~1.000 kart,
-~800 satıcı. `fraudTrain.csv` (1.296.675 satır) + `fraudTest.csv` (555.719 satır), fraud oranı ~%0.52.
+(`kartik2112/fraud-detection`). Sparkov ile üretilmiş simülasyon verisi; 2019-2020, 999 kart,
+693 satıcı. `fraudTrain.csv` (1.296.675 satır) + `fraudTest.csv` (555.719 satır) = 1.852.394 satır,
+9.651 fraud (%0.521).
 
 `fraudTrain.csv` ve `fraudTest.csv` dosyalarını `data/` klasörüne koyun (git'e eklenmez).
 

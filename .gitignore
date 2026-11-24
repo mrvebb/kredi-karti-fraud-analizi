@@ -19,3 +19,7 @@ derby.log
 .idea/
 .DS_Store
 Thumbs.db
+
+# Çalıştırma logları (yerel yollar içerir)
+results/**/run.log
+results/run_all.log
