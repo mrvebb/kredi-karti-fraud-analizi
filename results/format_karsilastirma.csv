@@ -1,0 +1,7 @@
+olcek,format,boyut_MB,yazma_sn,okuma_sn
+100k,csv,25.9,16.6,4.5
+100k,parquet,8.1,16.4,0.9
+1m,csv,259.8,24.3,14.6
+1m,parquet,75.7,22.1,1.1
+5m,csv,1348.0,107.2,63.9
+5m,parquet,391.5,101.8,4.5
