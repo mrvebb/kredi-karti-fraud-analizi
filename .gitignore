@@ -1,0 +1,21 @@
+# Veri dosyaları (büyük, git'e eklenmez)
+data/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Spark
+spark-warehouse/
+metastore_db/
+derby.log
+*.crc
+
+# IDE / OS
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
