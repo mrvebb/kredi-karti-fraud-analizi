@@ -387,8 +387,8 @@ def load_features(spark: SparkSession, size: int, log=print) -> DataFrame:
     """Öğrenci 3'ün özellikli verisi (eksiksizse). Yoksa anlaşılır hata verir."""
     path = features_path(size)
     if not is_complete(path):
-        raise FileNotFoundError(f"{path} yok/yarım. Önce: python src/ogrenci3_ozellik_uretimi.py "
-                                f"--sizes {size}")
+        raise FileNotFoundError(f"{path} yok/yarım. Öğrenci 3'ün özellik çıktısı bekleniyor "
+                                f"(README > Arayüz) ya da Öğrenci 2'yi --input scaled ile çalıştırın.")
     log(f"[common] {path} okunuyor")
     return spark.read.parquet(str(path))
 

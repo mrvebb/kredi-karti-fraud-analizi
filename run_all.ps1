@@ -1,4 +1,4 @@
-# Tüm akışı sırayla çalıştırır: Öğrenci 1 -> 3 -> 2 -> 4 -> 5
+﻿# Öğrenci 1 -> Öğrenci 2 akışını sırayla çalıştırır.
 # Her script kesintiye dayanıklı: tekrar çalıştırınca bitmiş adımları atlar, kaldığı yerden devam eder.
 #
 # VS Code'dan BAĞIMSIZ (pencere kapansa da devam eder) başlatmak için, herhangi bir PowerShell'de:
@@ -6,11 +6,10 @@
 # İlerlemeyi izlemek:
 #   Get-Content results\run_all.log -Wait -Tail 30
 #
-# Parametreler:  .\run_all.ps1 -Steps 2,4 -Sizes 100000,1000000 -DriverMemory 8g
+# Parametreler:  .\run_all.ps1 -Steps 2 -Sizes 5000000 -DriverMemory 8g
 param(
-    [int[]]$Steps = @(1, 3, 2, 4, 5),
+    [int[]]$Steps = @(1, 2),
     [int[]]$Sizes = @(100000, 1000000, 5000000),
-    [int]$ModelSize = 1000000,
     [string]$DriverMemory = "8g"
 )
 # "Continue": PS 5.1'de python'un stderr satırları (Spark uyarıları) hata sayılıp betiği durdurmasın;
@@ -35,14 +34,12 @@ function Write-Log([string]$msg) {
 $sizeArgs = $Sizes | ForEach-Object { "$_" }
 $commands = @{
     1 = @("src\ogrenci1_veri_hazirlama.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
-    3 = @("src\ogrenci3_ozellik_uretimi.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
     2 = @("src\ogrenci2_class_imbalance.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
-    4 = @("src\ogrenci4_model.py", "--size", "$ModelSize", "--driver_memory", $DriverMemory)
-    5 = @("src\ogrenci5_olcek_analizi.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
 }
 
 Write-Log "BAŞLADI  adımlar=$($Steps -join ',') boyutlar=$($Sizes -join ',') pid=$PID"
 foreach ($s in $Steps) {
+    if (-not $commands.ContainsKey($s)) { Write-Log "Öğrenci $s bu betikte yok, atlandı"; continue }
     Write-Log "Öğrenci $s BAŞLADI: python $($commands[$s] -join ' ')"
     $t0 = Get-Date
     # python çıktısı (Spark uyarıları dahil) aynı log dosyasına eklenir
