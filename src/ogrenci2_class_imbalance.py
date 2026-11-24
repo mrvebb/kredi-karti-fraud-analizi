@@ -519,6 +519,38 @@ def make_plots(res, out: Path):
     log.info(f"[f] Grafikler -> {out}")
 
 
+def plot_input_comparison(res_path: Path, out: Path):
+    """Temel özellikler (input=scaled) ile Öğrenci 3'ün özellikleri (input=features) karşılaştırması.
+    İki girdinin de sonuçları CSV'de varsa: boyut başına en iyi F1 (dengeleme yöntemleri arasında)
+    ve dengeleme yokken recall."""
+    import numpy as np
+    res = read_results(res_path)
+    if res.empty or not {"scaled", "features"} <= set(res["input"]):
+        return
+    plt = C.plt_setup()
+    names = {"scaled": "Temel özellikler (7)", "features": "Öğrenci 3'ün özellikleriyle (14)"}
+    sizes = sorted(res["size"].unique())
+    x = np.arange(len(sizes))
+    fig, axes = plt.subplots(1, 2, figsize=(13, 5), facecolor=C.SURFACE)
+    panels = [("En iyi F1 (dengeleme yöntemleri arasında)", res[res["method"] != "none"], "f1", "max"),
+              ("Dengeleme yokken recall", res[res["method"] == "none"], "recall", "first")]
+    for ax, (title, sub, metric, agg) in zip(axes, panels):
+        C.style_ax(ax, title)
+        for j, kind in enumerate(["scaled", "features"]):
+            vals = (sub[sub["input"] == kind].groupby("size")[metric].agg(agg)
+                    .reindex(sizes).fillna(0).to_numpy())
+            bars = ax.bar(x + (j - 0.5) * 0.38, vals, 0.38, color=C.SERIES[j], edgecolor=C.SURFACE,
+                          linewidth=1.5, label=names[kind])
+            for b, v in zip(bars, vals):
+                ax.text(b.get_x() + b.get_width() / 2, v + 0.01, f"{v:.3f}", ha="center",
+                        va="bottom", fontsize=9, color=C.INK)
+        ax.set_xticks(x, [C.size_label(s) for s in sizes])
+        ax.set_ylim(0, 0.75)  # üstte lejant için boşluk
+        ax.set_yticks(np.arange(0, 0.61, 0.1))
+    axes[0].legend(frameon=False, fontsize=9, labelcolor=C.INK2, loc="upper left", ncol=2)
+    C.save_fig(fig, out / "input_comparison.png")
+
+
 # --------------------------------------------------------------------------- #
 def main():
     global log
@@ -553,6 +585,7 @@ def main():
             sys.exit(1)
         log.info(f"--plot_only: {len(results)} deney sonucu okundu (girdi: {results['input'].iloc[0]})")
         make_plots(results, out)
+        plot_input_comparison(res_path, out)
         return
 
     sizes = sorted(args.sizes)
@@ -574,6 +607,7 @@ def main():
 
         results = read_results(res_path, input_kind)
         C.safe_plot(make_plots, results, out, log=log.warning)
+        C.safe_plot(plot_input_comparison, res_path, out, log=log.warning)
         if not args.no_save and set(args.methods) - {"none"}:
             save_balanced(spark, results, args.select_metric, sizes, input_kind, holder, out, args.force)
         log.info("Öğrenci 2 tamamlandı.")
