@@ -60,8 +60,9 @@ def eda(spark, raw, out: Path):
     pd_rows = [{"total": n0 + n1, "normal": n0, "fraud": n1, "fraud_pct": round(100 * n1 / (n0 + n1), 4),
                 "imbalance_ratio": round(n0 / n1, 1), "cards": raw.select("cc_num").distinct().count(),
                 "merchants": raw.select("merchant").distinct().count(),
-                "min_date": str(raw.agg(F.min("trans_date_trans_time")).first()[0]),
-                "max_date": str(raw.agg(F.max("trans_date_trans_time")).first()[0])}]
+                # Metne Spark içinde çevrilir: collect() timestamp'e bilgisayarın saat dilimini uygular
+                "min_date": raw.agg(F.date_format(F.min("trans_date_trans_time"), C.TS_FORMAT)).first()[0],
+                "max_date": raw.agg(F.date_format(F.max("trans_date_trans_time"), C.TS_FORMAT)).first()[0]}]
     import pandas as pd
     pd.DataFrame(pd_rows).to_csv(out / "eda_summary.csv", index=False)
     log.info(f"  Ham veri: {n0 + n1:,} satır | fraud {n1:,} (%{100 * n1 / (n0 + n1):.3f}) | "
