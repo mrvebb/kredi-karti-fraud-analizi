@@ -1,4 +1,4 @@
-﻿# Öğrenci 1 -> Öğrenci 3 -> Öğrenci 2 akışını sırayla çalıştırır.
+﻿# Öğrenci 1 -> Öğrenci 3 -> Öğrenci 2 -> Öğrenci 4 akışını sırayla çalıştırır.
 # Her script kesintiye dayanıklı: tekrar çalıştırınca bitmiş adımları atlar, kaldığı yerden devam eder.
 #
 # VS Code'dan BAĞIMSIZ (pencere kapansa da devam eder) başlatmak için, herhangi bir PowerShell'de:
@@ -7,8 +7,9 @@
 #   Get-Content results\run_all.log -Wait -Tail 30
 #
 # Parametreler:  .\run_all.ps1 -Steps 2 -Sizes 5000000 -DriverMemory 8g
+# Öğrenci 3 sonradan teslim edildiyse: .\run_all.ps1 -Steps 2,4  (dengelemeyi yenile, sonra modeller)
 param(
-    [int[]]$Steps = @(1, 3, 2),
+    [int[]]$Steps = @(1, 3, 2, 4),
     [int[]]$Sizes = @(100000, 1000000, 5000000),
     [string]$DriverMemory = "8g"
 )
@@ -36,6 +37,7 @@ $commands = @{
     1 = @("src\ogrenci1_veri_hazirlama.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
     3 = @("src\ogrenci3_ozellik_uretimi.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
     2 = @("src\ogrenci2_class_imbalance.py", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
+    4 = @("src\ogrenci4_modelleme.py", "--tune", "--sizes") + $sizeArgs + @("--driver_memory", $DriverMemory)
 }
 
 Write-Log "BAŞLADI  adımlar=$($Steps -join ',') boyutlar=$($Sizes -join ',') pid=$PID"

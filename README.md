@@ -37,14 +37,27 @@ Akış sırayla: **Öğrenci 1 → 3 → 2 → 4 → 5**. Her adım bir öncekin
 (dosya adları ve sütunlar için aşağıdaki **Arayüz** bölümüne bakın).
 
 ```powershell
-# Öğrenci 1 -> 3 -> 2 sırayla (100K, 1M, 5M) - kaldığı yerden devam eder
+# Öğrenci 1 -> 3 -> 2 -> 4 sırayla (100K, 1M, 5M) - kaldığı yerden devam eder
 .\run_all.ps1
 
 # Ya da tek tek
 .\.venv\Scripts\python.exe src\ogrenci1_veri_hazirlama.py       # -> data/scaled/
 .\.venv\Scripts\python.exe src\ogrenci3_ozellik_uretimi.py     # -> data/features/
 .\.venv\Scripts\python.exe src\ogrenci2_class_imbalance.py      # -> data/balanced/
+.\.venv\Scripts\python.exe src\ogrenci4_modelleme.py            # -> results/ogrenci4/
 ```
+
+**Öğrenci 4'ten önce:** `data/balanced/SECILEN_YONTEM.json` içinde `"input": "features"` olmalı.
+Öğrenci 2, Öğrenci 3'ten önce çalıştırıldıysa (`"input": "scaled"`) önce `.\run_all.ps1 -Steps 2,4`
+ile dengelemeyi Öğrenci 3'ün özellikleriyle yenileyin; Öğrenci 4 aksi halde log'da uyarı verir.
+
+Öğrenci 4: dengelenmiş train'in %20'si (orig_id hash) doğrulama kümesi olur; karar eşiği orada,
+gerçek fraud oranına göre düzeltilmiş F1'i en yüksek yapacak şekilde seçilir. Test seti eşik
+seçiminde kullanılmaz. Modeller: `lr` (Logistic Regression), `lr_fe` (LR + aralıklara bölünmüş
+sütunlar ve tutar x kategori etkileşimi), `rf`, `gbt`. `--tune` ile RF ve GBT için birkaç ayar
+denenir ve doğrulama AUPRC'sine göre en iyisi seçilir (`results/ogrenci4/tuning_results.csv`;
+`run_all.ps1` bunu açık çalıştırır). Diğer parametreler: `--models`, `--rf_trees`, `--rf_depth`,
+`--gbt_iter`, `--gbt_depth`, `--lr_iter`, `--lr_reg`.
 
 Öğrenci 2 varsayılan olarak `--input auto` ile çalışır: Öğrenci 3'ün `data/features/` çıktısı
 hazırsa onu, değilse Öğrenci 1'in `data/scaled/` verisini temel özelliklerle kullanır. Öğrenci 3
@@ -88,6 +101,7 @@ Spark çıktı klasöründe `_SUCCESS` dosyası yoksa yazma yarıda kalmıştır
 | `data/balanced/test_n<n>.parquet` | Öğrenci 2 | Öğrenci 4, 5 | Gerçek dağılımda test. Dengelemeyin. |
 | `data/balanced/SECILEN_YONTEM.json` | Öğrenci 2 | Öğrenci 4, 5 | Yöntem, oran, `weight_col`, `feature_cols` (modele girecek sayısal sütunlar; `category` ayrıca one-hot), boyut başına dosya yolları. |
 | `results/ogrenci2/imbalance_results.csv` | Öğrenci 2 | Öğrenci 5 | Her (girdi, boyut, yöntem, oran) için train satır sayısı, eğitim süresi, P/R/F1/AUPRC. Dengesizliğin süreye etkisi için. |
+| `results/ogrenci4/model_results.csv` | Öğrenci 4 | Öğrenci 5, rapor | Her (girdi, boyut, model, eşik türü) için train/test satırı, eşik, TP/FP/FN/TN, accuracy, P/R/F1, AUPRC, AUROC, eğitim/tahmin süresi, throughput. `naive` satırı: her şeye "normal" diyen model. |
 
 Train/test ayrımı `common.group_split` ile `orig_id` hash'ine göre yapılır: 5M'deki sentetik
 kopyalar orijinal satırla aynı tarafta kalır (test'e sızma olmaz). Kendi ayrımınızı yapacaksanız
@@ -103,10 +117,11 @@ data/            fraudTrain.csv, fraudTest.csv (Kaggle)
 src/
   common.py                    ortak: Spark, okuma, ölçekleme, train/test ayrımı, log, grafik stili
   ogrenci1_veri_hazirlama.py   ogrenci3_ozellik_uretimi.py   ogrenci2_class_imbalance.py
+  ogrenci4_modelleme.py
 notebooks/       keşif notebook'ları (Colab)
 results/ogrenciN/  her öğrencinin CSV + PNG çıktıları ve run.log
 docs/            rapor, mimari şema, sınav soruları
-run_all.ps1      Öğrenci 1 -> 3 -> 2 akışı
+run_all.ps1      Öğrenci 1 -> 3 -> 2 -> 4 akışı
 ```
 
 ## Katkı tablosu
@@ -116,6 +131,6 @@ run_all.ps1      Öğrenci 1 -> 3 -> 2 akışı
 | Öğrenci 1 | Veri hazırlama, dağılım incelemesi, 100K/1M/5M ölçekleme, CSV vs Parquet karşılaştırması | `src/ogrenci1_veri_hazirlama.py`, `src/common.py` | `data/scaled/`, `results/ogrenci1/` |
 | Öğrenci 2 | Class imbalance analizi, train/test ayrımı, dengeleme (none / class_weight / undersample / oversample × 1:1, 1:10), gerekçeli yöntem seçimi | `src/ogrenci2_class_imbalance.py` | `data/balanced/`, `results/ogrenci2/` (seçim gerekçesi: `secim_gerekcesi.md`) |
 | Öğrenci 3 | Spark window fonksiyonlarıyla müşteri / zaman bazlı davranış özellikleri (sadece geçmişe bakan pencereler, sızıntı testi), süre ölçümü, fraud/normal özellik karşılaştırması | `src/ogrenci3_ozellik_uretimi.py` | `data/features/`, `results/ogrenci3/` |
-| Öğrenci 4 | LR, Random Forest, GBT; precision / recall / F1 / AUPRC, confusion matrix, PR eğrisi, eşik analizi | | `results/ogrenci4/` |
+| Öğrenci 4 | LR, Random Forest, GBT; precision / recall / F1 / AUPRC, confusion matrix, PR eğrisi, eşik analizi (doğrulamada, öncel düzeltmeli), özellik önemi, accuracy paradoksu (naif model) | `src/ogrenci4_modelleme.py` | `results/ogrenci4/` (yorum: `model_secimi.md`) |
 | Öğrenci 5 | Boyut ve dengesizliğin eğitim süresi, bellek, throughput ve performansa etkisi | | `results/ogrenci5/` |
 | Hep birlikte | Mimari şema, teknik rapor, README, sınav soruları | `docs/` | |
