@@ -1,0 +1,239 @@
+2026-11-25 08:45:06 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 08:45:06 | INFO  | scaling 100K LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 08:46:03 | INFO  | scaling 100K LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 08:46:23 | INFO  | scaling 100K LR 1:10 | Ölçüm 1 kaydedildi | eğitim=10.531s tahmin=1.510s F1=0.4609 AUPRC=0.2955 RSS=1465.9 MB
+2026-11-25 08:46:23 | INFO  | scaling 100K LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 08:46:37 | INFO  | scaling 100K LR 1:10 | Ölçüm 2 kaydedildi | eğitim=5.340s tahmin=1.149s F1=0.4609 AUPRC=0.2955 RSS=1885.5 MB
+2026-11-25 08:46:37 | INFO  | scaling 100K LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 08:46:50 | INFO  | scaling 100K LR 1:10 | Ölçüm 3 kaydedildi | eğitim=7.088s tahmin=0.982s F1=0.4609 AUPRC=0.2955 RSS=1898.6 MB
+2026-11-25 08:46:50 | INFO  | scaling 100K RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 08:47:21 | INFO  | scaling 100K RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 08:47:45 | INFO  | scaling 100K RF 1:10 | Ölçüm 1 kaydedildi | eğitim=17.222s tahmin=1.957s F1=0.5363 AUPRC=0.7425 RSS=1919.0 MB
+2026-11-25 08:47:45 | INFO  | scaling 100K RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 08:48:05 | INFO  | scaling 100K RF 1:10 | Ölçüm 2 kaydedildi | eğitim=12.615s tahmin=2.418s F1=0.5363 AUPRC=0.7425 RSS=1922.4 MB
+2026-11-25 08:48:05 | INFO  | scaling 100K RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 08:48:23 | INFO  | scaling 100K RF 1:10 | Ölçüm 3 kaydedildi | eğitim=8.663s tahmin=2.197s F1=0.5363 AUPRC=0.7425 RSS=1925.5 MB
+2026-11-25 08:48:28 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 08:55:37 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 08:55:37 | INFO  | scaling 1M LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 08:56:54 | INFO  | scaling 1M LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 08:57:20 | INFO  | scaling 1M LR 1:10 | Ölçüm 1 kaydedildi | eğitim=10.599s tahmin=2.050s F1=0.4881 AUPRC=0.2823 RSS=2070.7 MB
+2026-11-25 08:57:20 | INFO  | scaling 1M LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 08:57:46 | INFO  | scaling 1M LR 1:10 | Ölçüm 2 kaydedildi | eğitim=8.195s tahmin=4.268s F1=0.4881 AUPRC=0.2823 RSS=2374.9 MB
+2026-11-25 08:57:46 | INFO  | scaling 1M LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 08:58:11 | INFO  | scaling 1M LR 1:10 | Ölçüm 3 kaydedildi | eğitim=9.057s tahmin=2.194s F1=0.4881 AUPRC=0.2823 RSS=2390.9 MB
+2026-11-25 08:58:11 | INFO  | scaling 1M RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 08:59:25 | INFO  | scaling 1M RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:00:27 | INFO  | scaling 1M RF 1:10 | Ölçüm 1 kaydedildi | eğitim=42.067s tahmin=10.075s F1=0.6644 AUPRC=0.8142 RSS=3232.5 MB
+2026-11-25 09:00:27 | INFO  | scaling 1M RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:01:26 | INFO  | scaling 1M RF 1:10 | Ölçüm 2 kaydedildi | eğitim=41.654s tahmin=6.647s F1=0.6644 AUPRC=0.8142 RSS=3238.0 MB
+2026-11-25 09:01:26 | INFO  | scaling 1M RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:02:23 | INFO  | scaling 1M RF 1:10 | Ölçüm 3 kaydedildi | eğitim=38.446s tahmin=9.949s F1=0.6644 AUPRC=0.8142 RSS=3221.8 MB
+2026-11-25 09:02:23 | INFO  | scaling 5M LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:03:27 | INFO  | scaling 5M LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:04:30 | INFO  | scaling 5M LR 1:10 | Ölçüm 1 kaydedildi | eğitim=11.351s tahmin=5.371s F1=0.4675 AUPRC=0.2878 RSS=7855.0 MB
+2026-11-25 09:04:30 | INFO  | scaling 5M LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:05:33 | INFO  | scaling 5M LR 1:10 | Ölçüm 2 kaydedildi | eğitim=12.120s tahmin=5.240s F1=0.4675 AUPRC=0.2878 RSS=7985.3 MB
+2026-11-25 09:05:33 | INFO  | scaling 5M LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:06:33 | INFO  | scaling 5M LR 1:10 | Ölçüm 3 kaydedildi | eğitim=9.409s tahmin=6.719s F1=0.4675 AUPRC=0.2878 RSS=7221.6 MB
+2026-11-25 09:06:33 | INFO  | scaling 5M RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:10:41 | INFO  | scaling 5M RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:14:55 | INFO  | scaling 5M RF 1:10 | Ölçüm 1 kaydedildi | eğitim=194.976s tahmin=32.910s F1=0.6692 AUPRC=0.8287 RSS=6307.9 MB
+2026-11-25 09:14:55 | INFO  | scaling 5M RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:18:41 | INFO  | scaling 5M RF 1:10 | Ölçüm 2 kaydedildi | eğitim=167.236s tahmin=31.386s F1=0.6692 AUPRC=0.8287 RSS=6859.3 MB
+2026-11-25 09:18:41 | INFO  | scaling 5M RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:22:13 | INFO  | scaling 5M RF 1:10 | Ölçüm 3 kaydedildi | eğitim=148.436s tahmin=33.495s F1=0.6692 AUPRC=0.8287 RSS=7294.5 MB
+2026-11-25 09:22:22 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 09:30:58 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 09:30:58 | INFO  | imbalance 100K LR original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:32:03 | INFO  | imbalance 100K LR original | Ölçüm 1/3 başladı
+2026-11-25 09:32:28 | INFO  | imbalance 100K LR original | Ölçüm 1 kaydedildi | eğitim=14.071s tahmin=1.073s F1=0.3974 AUPRC=0.4139 RSS=1587.0 MB
+2026-11-25 09:32:28 | INFO  | imbalance 100K LR original | Ölçüm 2/3 başladı
+2026-11-25 09:33:01 | INFO  | imbalance 100K LR original | Ölçüm 2 kaydedildi | eğitim=23.376s tahmin=0.984s F1=0.3974 AUPRC=0.4139 RSS=1832.4 MB
+2026-11-25 09:33:01 | INFO  | imbalance 100K LR original | Ölçüm 3/3 başladı
+2026-11-25 09:33:17 | INFO  | imbalance 100K LR original | Ölçüm 3 kaydedildi | eğitim=11.049s tahmin=0.833s F1=0.3974 AUPRC=0.4139 RSS=1845.8 MB
+2026-11-25 09:33:17 | INFO  | imbalance 100K LR 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:33:30 | INFO  | imbalance 100K LR 1:50 | Ölçüm 1/3 başladı
+2026-11-25 09:33:42 | INFO  | imbalance 100K LR 1:50 | Ölçüm 1 kaydedildi | eğitim=5.528s tahmin=1.516s F1=0.4221 AUPRC=0.3173 RSS=1861.3 MB
+2026-11-25 09:33:42 | INFO  | imbalance 100K LR 1:50 | Ölçüm 2/3 başladı
+2026-11-25 09:33:52 | INFO  | imbalance 100K LR 1:50 | Ölçüm 2 kaydedildi | eğitim=4.971s tahmin=0.687s F1=0.4221 AUPRC=0.3173 RSS=1868.4 MB
+2026-11-25 09:33:52 | INFO  | imbalance 100K LR 1:50 | Ölçüm 3/3 başladı
+2026-11-25 09:34:03 | INFO  | imbalance 100K LR 1:50 | Ölçüm 3 kaydedildi | eğitim=5.867s tahmin=0.750s F1=0.4221 AUPRC=0.3173 RSS=1871.8 MB
+2026-11-25 09:34:03 | INFO  | imbalance 100K LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:34:14 | INFO  | imbalance 100K LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:34:23 | INFO  | imbalance 100K LR 1:10 | Ölçüm 1 kaydedildi | eğitim=3.669s tahmin=0.664s F1=0.4911 AUPRC=0.2802 RSS=1877.2 MB
+2026-11-25 09:34:23 | INFO  | imbalance 100K LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:34:33 | INFO  | imbalance 100K LR 1:10 | Ölçüm 2 kaydedildi | eğitim=5.494s tahmin=1.149s F1=0.4911 AUPRC=0.2802 RSS=1878.9 MB
+2026-11-25 09:34:33 | INFO  | imbalance 100K LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:34:42 | INFO  | imbalance 100K LR 1:10 | Ölçüm 3 kaydedildi | eğitim=4.048s tahmin=0.813s F1=0.4911 AUPRC=0.2802 RSS=2168.1 MB
+2026-11-25 09:34:42 | INFO  | imbalance 100K LR 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:34:53 | INFO  | imbalance 100K LR 1:1 | Ölçüm 1/3 başladı
+2026-11-25 09:35:02 | INFO  | imbalance 100K LR 1:1 | Ölçüm 1 kaydedildi | eğitim=4.659s tahmin=1.083s F1=0.1103 AUPRC=0.1985 RSS=2179.0 MB
+2026-11-25 09:35:02 | INFO  | imbalance 100K LR 1:1 | Ölçüm 2/3 başladı
+2026-11-25 09:35:10 | INFO  | imbalance 100K LR 1:1 | Ölçüm 2 kaydedildi | eğitim=4.050s tahmin=0.554s F1=0.1103 AUPRC=0.1985 RSS=2180.4 MB
+2026-11-25 09:35:10 | INFO  | imbalance 100K LR 1:1 | Ölçüm 3/3 başladı
+2026-11-25 09:35:20 | INFO  | imbalance 100K LR 1:1 | Ölçüm 3 kaydedildi | eğitim=5.314s tahmin=1.103s F1=0.1103 AUPRC=0.1985 RSS=2182.6 MB
+2026-11-25 09:35:20 | INFO  | imbalance 100K RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:36:19 | INFO  | imbalance 100K RF original | Ölçüm 1/3 başladı
+2026-11-25 09:37:14 | INFO  | imbalance 100K RF original | Ölçüm 1 kaydedildi | eğitim=48.026s tahmin=1.528s F1=0.7882 AUPRC=0.8067 RSS=2472.4 MB
+2026-11-25 09:37:14 | INFO  | imbalance 100K RF original | Ölçüm 2/3 başladı
+2026-11-25 09:38:04 | INFO  | imbalance 100K RF original | Ölçüm 2 kaydedildi | eğitim=45.022s tahmin=1.488s F1=0.7882 AUPRC=0.8067 RSS=2473.0 MB
+2026-11-25 09:38:04 | INFO  | imbalance 100K RF original | Ölçüm 3/3 başladı
+2026-11-25 09:39:03 | INFO  | imbalance 100K RF original | Ölçüm 3 kaydedildi | eğitim=51.453s tahmin=2.696s F1=0.7882 AUPRC=0.8067 RSS=2474.9 MB
+2026-11-25 09:39:03 | INFO  | imbalance 100K RF 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:39:27 | INFO  | imbalance 100K RF 1:50 | Ölçüm 1/3 başladı
+2026-11-25 09:39:52 | INFO  | imbalance 100K RF 1:50 | Ölçüm 1 kaydedildi | eğitim=18.772s tahmin=2.962s F1=0.7522 AUPRC=0.7835 RSS=2475.7 MB
+2026-11-25 09:39:52 | INFO  | imbalance 100K RF 1:50 | Ölçüm 2/3 başladı
+2026-11-25 09:40:14 | INFO  | imbalance 100K RF 1:50 | Ölçüm 2 kaydedildi | eğitim=17.996s tahmin=1.486s F1=0.7522 AUPRC=0.7835 RSS=2477.4 MB
+2026-11-25 09:40:14 | INFO  | imbalance 100K RF 1:50 | Ölçüm 3/3 başladı
+2026-11-25 09:40:39 | INFO  | imbalance 100K RF 1:50 | Ölçüm 3 kaydedildi | eğitim=17.919s tahmin=2.641s F1=0.7522 AUPRC=0.7835 RSS=2478.4 MB
+2026-11-25 09:40:39 | INFO  | imbalance 100K RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:40:52 | INFO  | imbalance 100K RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:41:04 | INFO  | imbalance 100K RF 1:10 | Ölçüm 1 kaydedildi | eğitim=6.917s tahmin=1.520s F1=0.5249 AUPRC=0.7372 RSS=2480.7 MB
+2026-11-25 09:41:04 | INFO  | imbalance 100K RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:41:18 | INFO  | imbalance 100K RF 1:10 | Ölçüm 2 kaydedildi | eğitim=8.604s tahmin=1.459s F1=0.5249 AUPRC=0.7372 RSS=2482.3 MB
+2026-11-25 09:41:18 | INFO  | imbalance 100K RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:41:32 | INFO  | imbalance 100K RF 1:10 | Ölçüm 3 kaydedildi | eğitim=8.766s tahmin=1.692s F1=0.5249 AUPRC=0.7372 RSS=2484.1 MB
+2026-11-25 09:41:32 | INFO  | imbalance 100K RF 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:41:43 | INFO  | imbalance 100K RF 1:1 | Ölçüm 1/3 başladı
+2026-11-25 09:41:50 | INFO  | imbalance 100K RF 1:1 | Ölçüm 1 kaydedildi | eğitim=3.543s tahmin=1.484s F1=0.1769 AUPRC=0.5954 RSS=2485.2 MB
+2026-11-25 09:41:50 | INFO  | imbalance 100K RF 1:1 | Ölçüm 2/3 başladı
+2026-11-25 09:42:00 | INFO  | imbalance 100K RF 1:1 | Ölçüm 2 kaydedildi | eğitim=5.411s tahmin=1.341s F1=0.1769 AUPRC=0.5954 RSS=2490.9 MB
+2026-11-25 09:42:00 | INFO  | imbalance 100K RF 1:1 | Ölçüm 3/3 başladı
+2026-11-25 09:42:10 | INFO  | imbalance 100K RF 1:1 | Ölçüm 3 kaydedildi | eğitim=3.703s tahmin=2.189s F1=0.1769 AUPRC=0.5954 RSS=2492.8 MB
+2026-11-25 09:42:17 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 09:47:08 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 09:47:08 | INFO  | imbalance 1M LR original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:49:01 | INFO  | imbalance 1M LR original | Ölçüm 1/3 başladı
+2026-11-25 09:50:02 | INFO  | imbalance 1M LR original | Ölçüm 1 kaydedildi | eğitim=33.396s tahmin=4.090s F1=0.4458 AUPRC=0.4559 RSS=4123.7 MB
+2026-11-25 09:50:02 | INFO  | imbalance 1M LR original | Ölçüm 2/3 başladı
+2026-11-25 09:50:54 | INFO  | imbalance 1M LR original | Ölçüm 2 kaydedildi | eğitim=30.982s tahmin=2.115s F1=0.4458 AUPRC=0.4559 RSS=4141.5 MB
+2026-11-25 09:50:54 | INFO  | imbalance 1M LR original | Ölçüm 3/3 başladı
+2026-11-25 09:51:46 | INFO  | imbalance 1M LR original | Ölçüm 3 kaydedildi | eğitim=31.063s tahmin=2.192s F1=0.4458 AUPRC=0.4559 RSS=4551.0 MB
+2026-11-25 09:51:46 | INFO  | imbalance 1M LR 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:52:17 | INFO  | imbalance 1M LR 1:50 | Ölçüm 1/3 başladı
+2026-11-25 09:52:46 | INFO  | imbalance 1M LR 1:50 | Ölçüm 1 kaydedildi | eğitim=12.342s tahmin=1.880s F1=0.4740 AUPRC=0.3788 RSS=4925.8 MB
+2026-11-25 09:52:46 | INFO  | imbalance 1M LR 1:50 | Ölçüm 2/3 başladı
+2026-11-25 09:53:16 | INFO  | imbalance 1M LR 1:50 | Ölçüm 2 kaydedildi | eğitim=12.361s tahmin=2.260s F1=0.4740 AUPRC=0.3788 RSS=5333.2 MB
+2026-11-25 09:53:16 | INFO  | imbalance 1M LR 1:50 | Ölçüm 3/3 başladı
+2026-11-25 09:53:46 | INFO  | imbalance 1M LR 1:50 | Ölçüm 3 kaydedildi | eğitim=11.047s tahmin=3.256s F1=0.4740 AUPRC=0.3788 RSS=5849.4 MB
+2026-11-25 09:53:46 | INFO  | imbalance 1M LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:54:10 | INFO  | imbalance 1M LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 09:54:33 | INFO  | imbalance 1M LR 1:10 | Ölçüm 1 kaydedildi | eğitim=6.153s tahmin=3.562s F1=0.4815 AUPRC=0.2879 RSS=6279.8 MB
+2026-11-25 09:54:33 | INFO  | imbalance 1M LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 09:55:02 | INFO  | imbalance 1M LR 1:10 | Ölçüm 2 kaydedildi | eğitim=12.970s tahmin=1.956s F1=0.4815 AUPRC=0.2879 RSS=6285.4 MB
+2026-11-25 09:55:02 | INFO  | imbalance 1M LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 09:55:26 | INFO  | imbalance 1M LR 1:10 | Ölçüm 3 kaydedildi | eğitim=5.112s tahmin=1.871s F1=0.4815 AUPRC=0.2879 RSS=5357.1 MB
+2026-11-25 09:55:26 | INFO  | imbalance 1M LR 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 09:55:46 | INFO  | imbalance 1M LR 1:1 | Ölçüm 1/3 başladı
+2026-11-25 09:56:08 | INFO  | imbalance 1M LR 1:1 | Ölçüm 1 kaydedildi | eğitim=6.903s tahmin=1.493s F1=0.1197 AUPRC=0.2232 RSS=5368.2 MB
+2026-11-25 09:56:08 | INFO  | imbalance 1M LR 1:1 | Ölçüm 2/3 başladı
+2026-11-25 09:56:31 | INFO  | imbalance 1M LR 1:1 | Ölçüm 2 kaydedildi | eğitim=5.285s tahmin=2.912s F1=0.1197 AUPRC=0.2232 RSS=5374.4 MB
+2026-11-25 09:56:31 | INFO  | imbalance 1M LR 1:1 | Ölçüm 3/3 başladı
+2026-11-25 09:56:50 | INFO  | imbalance 1M LR 1:1 | Ölçüm 3 kaydedildi | eğitim=6.490s tahmin=2.076s F1=0.1197 AUPRC=0.2232 RSS=5375.9 MB
+2026-11-25 09:56:50 | INFO  | imbalance 1M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 10:03:44 | INFO  | imbalance 1M RF original | Ölçüm 1/3 başladı
+2026-11-25 10:10:25 | INFO  | imbalance 1M RF original | Ölçüm 1 kaydedildi | eğitim=376.486s tahmin=8.602s F1=0.8032 AUPRC=0.8418 RSS=5379.1 MB
+2026-11-25 10:10:25 | INFO  | imbalance 1M RF original | Ölçüm 2/3 başladı
+2026-11-25 10:17:59 | INFO  | imbalance 1M RF original | Ölçüm 2 kaydedildi | eğitim=429.040s tahmin=8.003s F1=0.8032 AUPRC=0.8418 RSS=5962.5 MB
+2026-11-25 10:17:59 | INFO  | imbalance 1M RF original | Ölçüm 3/3 başladı
+2026-11-25 10:24:13 | INFO  | imbalance 1M RF original | Ölçüm 3 kaydedildi | eğitim=351.354s tahmin=6.468s F1=0.8032 AUPRC=0.8418 RSS=3680.7 MB
+2026-11-25 10:24:13 | INFO  | imbalance 1M RF 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 10:26:46 | INFO  | imbalance 1M RF 1:50 | Ölçüm 1/3 başladı
+2026-11-25 14:36:58 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 14:36:58 | INFO  | imbalance 1M RF 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 14:40:42 | INFO  | imbalance 1M RF 1:50 | Ölçüm 1/3 başladı
+2026-11-25 14:43:42 | INFO  | imbalance 1M RF 1:50 | Ölçüm 1 kaydedildi | eğitim=151.137s tahmin=7.016s F1=0.7938 AUPRC=0.8282 RSS=3877.1 MB
+2026-11-25 14:43:42 | INFO  | imbalance 1M RF 1:50 | Ölçüm 2/3 başladı
+2026-11-25 14:46:18 | INFO  | imbalance 1M RF 1:50 | Ölçüm 2 kaydedildi | eğitim=128.521s tahmin=11.306s F1=0.7938 AUPRC=0.8282 RSS=3891.5 MB
+2026-11-25 14:46:18 | INFO  | imbalance 1M RF 1:50 | Ölçüm 3/3 başladı
+2026-11-25 14:49:21 | INFO  | imbalance 1M RF 1:50 | Ölçüm 3 kaydedildi | eğitim=152.569s tahmin=13.766s F1=0.7938 AUPRC=0.8282 RSS=3801.3 MB
+2026-11-25 14:49:21 | INFO  | imbalance 1M RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 14:50:31 | INFO  | imbalance 1M RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 14:51:38 | INFO  | imbalance 1M RF 1:10 | Ölçüm 1 kaydedildi | eğitim=43.974s tahmin=9.425s F1=0.6474 AUPRC=0.8072 RSS=3814.5 MB
+2026-11-25 14:51:38 | INFO  | imbalance 1M RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 14:52:41 | INFO  | imbalance 1M RF 1:10 | Ölçüm 2 kaydedildi | eğitim=40.785s tahmin=7.081s F1=0.6474 AUPRC=0.8072 RSS=3815.9 MB
+2026-11-25 14:52:41 | INFO  | imbalance 1M RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 14:53:41 | INFO  | imbalance 1M RF 1:10 | Ölçüm 3 kaydedildi | eğitim=40.835s tahmin=6.786s F1=0.6474 AUPRC=0.8072 RSS=3832.0 MB
+2026-11-25 14:53:41 | INFO  | imbalance 1M RF 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 14:54:22 | INFO  | imbalance 1M RF 1:1 | Ölçüm 1/3 başladı
+2026-11-25 14:55:03 | INFO  | imbalance 1M RF 1:1 | Ölçüm 1 kaydedildi | eğitim=14.484s tahmin=10.605s F1=0.2301 AUPRC=0.7345 RSS=3846.5 MB
+2026-11-25 14:55:03 | INFO  | imbalance 1M RF 1:1 | Ölçüm 2/3 başladı
+2026-11-25 14:55:43 | INFO  | imbalance 1M RF 1:1 | Ölçüm 2 kaydedildi | eğitim=14.753s tahmin=10.872s F1=0.2301 AUPRC=0.7345 RSS=3133.5 MB
+2026-11-25 14:55:43 | INFO  | imbalance 1M RF 1:1 | Ölçüm 3/3 başladı
+2026-11-25 14:56:29 | INFO  | imbalance 1M RF 1:1 | Ölçüm 3 kaydedildi | eğitim=13.525s tahmin=14.536s F1=0.2301 AUPRC=0.7345 RSS=4350.7 MB
+2026-11-25 14:56:35 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 15:26:26 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 15:26:26 | INFO  | imbalance 5M LR original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 15:31:21 | INFO  | imbalance 5M LR original | Ölçüm 1/3 başladı
+2026-11-25 15:35:15 | INFO  | imbalance 5M LR original | Ölçüm 1 kaydedildi | eğitim=116.829s tahmin=6.054s F1=0.4345 AUPRC=0.4476 RSS=8349.5 MB
+2026-11-25 15:35:15 | INFO  | imbalance 5M LR original | Ölçüm 2/3 başladı
+2026-11-25 15:39:28 | INFO  | imbalance 5M LR original | Ölçüm 2 kaydedildi | eğitim=118.931s tahmin=8.252s F1=0.4345 AUPRC=0.4476 RSS=8703.5 MB
+2026-11-25 15:39:28 | INFO  | imbalance 5M LR original | Ölçüm 3/3 başladı
+2026-11-25 15:43:16 | INFO  | imbalance 5M LR original | Ölçüm 3 kaydedildi | eğitim=120.855s tahmin=7.154s F1=0.4345 AUPRC=0.4476 RSS=8800.3 MB
+2026-11-25 15:43:16 | INFO  | imbalance 5M LR 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 15:45:18 | INFO  | imbalance 5M LR 1:50 | Ölçüm 1/3 başladı
+2026-11-25 15:47:10 | INFO  | imbalance 5M LR 1:50 | Ölçüm 1 kaydedildi | eğitim=33.528s tahmin=5.747s F1=0.4775 AUPRC=0.3805 RSS=8036.7 MB
+2026-11-25 15:47:10 | INFO  | imbalance 5M LR 1:50 | Ölçüm 2/3 başladı
+2026-11-25 15:48:59 | INFO  | imbalance 5M LR 1:50 | Ölçüm 2 kaydedildi | eğitim=32.152s tahmin=8.035s F1=0.4775 AUPRC=0.3805 RSS=7211.1 MB
+2026-11-25 15:48:59 | INFO  | imbalance 5M LR 1:50 | Ölçüm 3/3 başladı
+2026-11-25 15:50:50 | INFO  | imbalance 5M LR 1:50 | Ölçüm 3 kaydedildi | eğitim=32.281s tahmin=5.440s F1=0.4775 AUPRC=0.3805 RSS=8168.2 MB
+2026-11-25 15:50:50 | INFO  | imbalance 5M LR 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 15:52:16 | INFO  | imbalance 5M LR 1:10 | Ölçüm 1/3 başladı
+2026-11-25 15:53:41 | INFO  | imbalance 5M LR 1:10 | Ölçüm 1 kaydedildi | eğitim=9.605s tahmin=5.768s F1=0.4688 AUPRC=0.2863 RSS=8464.6 MB
+2026-11-25 15:53:41 | INFO  | imbalance 5M LR 1:10 | Ölçüm 2/3 başladı
+2026-11-25 15:55:08 | INFO  | imbalance 5M LR 1:10 | Ölçüm 2 kaydedildi | eğitim=10.916s tahmin=5.081s F1=0.4688 AUPRC=0.2863 RSS=8692.8 MB
+2026-11-25 15:55:08 | INFO  | imbalance 5M LR 1:10 | Ölçüm 3/3 başladı
+2026-11-25 15:56:37 | INFO  | imbalance 5M LR 1:10 | Ölçüm 3 kaydedildi | eğitim=9.040s tahmin=7.719s F1=0.4688 AUPRC=0.2863 RSS=7963.2 MB
+2026-11-25 15:56:37 | INFO  | imbalance 5M LR 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 15:57:59 | INFO  | imbalance 5M LR 1:1 | Ölçüm 1/3 başladı
+2026-11-25 15:59:24 | INFO  | imbalance 5M LR 1:1 | Ölçüm 1 kaydedildi | eğitim=7.614s tahmin=5.716s F1=0.1083 AUPRC=0.2378 RSS=7870.0 MB
+2026-11-25 15:59:24 | INFO  | imbalance 5M LR 1:1 | Ölçüm 2/3 başladı
+2026-11-25 16:01:09 | INFO  | imbalance 5M LR 1:1 | Ölçüm 2 kaydedildi | eğitim=6.486s tahmin=7.534s F1=0.1083 AUPRC=0.2378 RSS=8341.9 MB
+2026-11-25 16:01:09 | INFO  | imbalance 5M LR 1:1 | Ölçüm 3/3 başladı
+2026-11-25 16:02:31 | INFO  | imbalance 5M LR 1:1 | Ölçüm 3 kaydedildi | eğitim=6.360s tahmin=7.357s F1=0.1083 AUPRC=0.2378 RSS=8431.4 MB
+2026-11-25 16:02:39 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 16:48:48 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 16:48:48 | INFO  | imbalance 5M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 17:03:34 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 17:03:34 | INFO  | imbalance 5M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 17:20:37 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 17:20:37 | INFO  | imbalance 5M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 17:36:09 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 17:36:09 | INFO  | imbalance 5M RF 1:1 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 17:39:40 | INFO  | imbalance 5M RF 1:1 | Ölçüm 1/3 başladı
+2026-11-25 17:42:13 | INFO  | imbalance 5M RF 1:1 | Ölçüm 1 kaydedildi | eğitim=49.011s tahmin=39.039s F1=0.2857 AUPRC=0.7818 RSS=5643.6 MB
+2026-11-25 17:42:13 | INFO  | imbalance 5M RF 1:1 | Ölçüm 2/3 başladı
+2026-11-25 17:44:40 | INFO  | imbalance 5M RF 1:1 | Ölçüm 2 kaydedildi | eğitim=38.934s tahmin=39.679s F1=0.2857 AUPRC=0.7818 RSS=7045.2 MB
+2026-11-25 17:44:40 | INFO  | imbalance 5M RF 1:1 | Ölçüm 3/3 başladı
+2026-11-25 17:47:05 | INFO  | imbalance 5M RF 1:1 | Ölçüm 3 kaydedildi | eğitim=41.472s tahmin=41.831s F1=0.2857 AUPRC=0.7818 RSS=7753.0 MB
+2026-11-25 17:47:12 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 17:49:01 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 17:49:01 | INFO  | imbalance 5M RF 1:10 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 17:54:20 | INFO  | imbalance 5M RF 1:10 | Ölçüm 1/3 başladı
+2026-11-25 17:59:18 | INFO  | imbalance 5M RF 1:10 | Ölçüm 1 kaydedildi | eğitim=201.140s tahmin=36.784s F1=0.6630 AUPRC=0.8205 RSS=4542.3 MB
+2026-11-25 17:59:18 | INFO  | imbalance 5M RF 1:10 | Ölçüm 2/3 başladı
+2026-11-25 18:03:36 | INFO  | imbalance 5M RF 1:10 | Ölçüm 2 kaydedildi | eğitim=166.305s tahmin=36.770s F1=0.6630 AUPRC=0.8205 RSS=4081.9 MB
+2026-11-25 18:03:36 | INFO  | imbalance 5M RF 1:10 | Ölçüm 3/3 başladı
+2026-11-25 18:07:41 | INFO  | imbalance 5M RF 1:10 | Ölçüm 3 kaydedildi | eğitim=157.751s tahmin=33.260s F1=0.6630 AUPRC=0.8205 RSS=5562.9 MB
+2026-11-25 18:07:48 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 18:09:00 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 18:09:00 | INFO  | imbalance 5M RF 1:50 | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 18:21:49 | INFO  | imbalance 5M RF 1:50 | Ölçüm 1/3 başladı
+2026-11-25 18:34:29 | INFO  | imbalance 5M RF 1:50 | Ölçüm 1 kaydedildi | eğitim=660.814s tahmin=33.688s F1=0.8015 AUPRC=0.8314 RSS=4772.6 MB
+2026-11-25 18:34:29 | INFO  | imbalance 5M RF 1:50 | Ölçüm 2/3 başladı
+2026-11-25 18:46:56 | INFO  | imbalance 5M RF 1:50 | Ölçüm 2 kaydedildi | eğitim=648.758s tahmin=36.086s F1=0.8015 AUPRC=0.8314 RSS=4485.7 MB
+2026-11-25 18:46:56 | INFO  | imbalance 5M RF 1:50 | Ölçüm 3/3 başladı
+2026-11-25 18:58:36 | INFO  | imbalance 5M RF 1:50 | Ölçüm 3 kaydedildi | eğitim=611.282s tahmin=31.152s F1=0.8015 AUPRC=0.8314 RSS=5335.4 MB
+2026-11-25 18:58:44 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
+2026-11-25 18:59:26 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'Intel(R) Xeon(R) CPU @ 2.20GHz', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '3.5.5', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '3994e1fd7285', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 18:59:26 | INFO  | imbalance 5M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 20:47:25 | INFO  | Ortam: {'cpu_count': 2, 'cpu_model': 'AMD EPYC 7B12', 'partitions': 2, 'shuffle_partitions': 8, 'driver_memory': '8g', 'spark_version': '4.0.3', 'python_version': '3.12.13', 'ram_mb': 13605.818368, 'runtime_id': '5fbf93a1abbc', 'memory_method': 'JVM_RSS_psutil_0.2s'}
+2026-11-25 20:47:25 | INFO  | imbalance 5M RF original | Isınma başladı (CSV medyanına dahil değil)
+2026-11-25 21:06:32 | INFO  | imbalance 5M RF original | Ölçüm 1/3 başladı
+2026-11-25 21:27:46 | INFO  | imbalance 5M RF original | Ölçüm 1 kaydedildi | eğitim=1199.673s tahmin=20.757s F1=0.8037 AUPRC=0.8374 RSS=7717.3 MB
+2026-11-25 21:27:46 | INFO  | imbalance 5M RF original | Ölçüm 2/3 başladı
+2026-11-25 21:50:43 | INFO  | imbalance 5M RF original | Ölçüm 2 kaydedildi | eğitim=1308.687s tahmin=20.994s F1=0.8037 AUPRC=0.8374 RSS=7657.3 MB
+2026-11-25 21:50:43 | INFO  | imbalance 5M RF original | Ölçüm 3/3 başladı
+2026-11-25 22:14:24 | INFO  | imbalance 5M RF original | Ölçüm 3 kaydedildi | eğitim=1347.758s tahmin=25.952s F1=0.8037 AUPRC=0.8374 RSS=7847.4 MB
+2026-11-25 22:14:32 | INFO  | Çıktılar: /content/drive/MyDrive/BVA_ogrenci5_sonuclar
